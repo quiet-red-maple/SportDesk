@@ -1,0 +1,12 @@
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+.cache/
+output/
+.env
+*.mp4
+!assets/**/*.mp4
+build/
+dist/
+

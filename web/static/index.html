@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SPORT DESK · 体育热点短视频 Agent</title>
+  <link rel="stylesheet" href="/app.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="top">
+    <div class="brand">
+      <span class="live">LIVE</span>
+      <h1>SPORT DESK</h1>
+      <p>多榜采集 · 醒目文案 · 打字机成片</p>
+    </div>
+    <div class="actions">
+      <button id="btn-refresh" type="button">刷新热点</button>
+      <button id="btn-gen" class="primary" type="button">生成这条视频</button>
+    </div>
+  </header>
+
+  <main class="desk">
+    <section class="rail">
+      <div class="kicker" id="board-kicker">今日体育热榜</div>
+      <nav id="boards" class="boards"></nav>
+      <form id="topic-form" class="topic-form">
+        <input id="topic" maxlength="16" placeholder="自定义类目，如 篮球 / 人工智能" autocomplete="off" />
+        <button type="submit">搜热点</button>
+      </form>
+      <div id="news" class="news"></div>
+    </section>
+
+    <section class="script-pane">
+      <div class="kicker">剪映口播稿</div>
+      <label>标题 TITLE</label>
+      <input id="title" maxlength="16" placeholder="标题，完整人名/队名" />
+      <label>钩子 HOOK</label>
+      <input id="hook" maxlength="36" placeholder="副标题，比分/逆转完整写出" />
+      <label>背景音乐 BGM</label>
+      <div class="bgm-bar">
+        <select id="bgm-select"></select>
+        <button id="btn-bgm-preview" type="button">试听</button>
+      </div>
+      <div id="bgm" class="bgm"></div>
+      <label class="upload">导入本地 mp3 / wav
+        <input id="bgm-file" type="file" accept="audio/mpeg,audio/wav,audio/mp4,audio/aac,audio/flac,audio/ogg,.mp3,.wav,.m4a,.aac,.flac,.ogg" />
+      </label>
+      <audio id="bgm-player"></audio>
+      <label>正文 BODY · 打字机</label>
+      <textarea id="body" maxlength="220" placeholder="口播正文，从这篇新闻里总结事实"></textarea>
+      <p id="meta" class="meta">先点一条热点。</p>
+    </section>
+
+    <section class="stage">
+      <div class="kicker">手机竖屏 9:16</div>
+      <div class="phone">
+        <div class="monitor">
+          <video id="player" controls playsinline webkit-playsinline preload="metadata"></video>
+          <div id="placeholder" class="placeholder">等待出片</div>
+          <div id="progress" class="progress hidden">
+            <b id="pct">0%</b>
+            <span id="pmsg">排队</span>
+          </div>
+        </div>
+      </div>
+      <a id="btn-download" class="download hidden" download>下载成片</a>
+      <label>视频号标题</label>
+      <input id="ch-title" maxlength="40" placeholder="粘贴到视频号标题" />
+      <label>视频号热词</label>
+      <div class="tag-row">
+        <textarea id="hashtags" maxlength="320" rows="3" placeholder="#体育 #体育资讯 #中国体育"></textarea>
+        <button id="btn-copy" type="button">复制</button>
+      </div>
+      <p id="copy-hint" class="meta">点复制，直接贴进视频号描述。</p>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
