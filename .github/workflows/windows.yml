@@ -1,6 +1,6 @@
 # [INPUT]: GitHub Actions windows-latest + packaging/SportDesk.spec
-# [OUTPUT]: 产物 SportDesk-Windows.zip（解压后 SportDesk/SportDesk.exe）
-# [POS]: 推 main 或手动 Run 即在微软云上打 Windows 包，本机 macOS 打不出 exe
+# [OUTPUT]: Release 资产 SportDesk-Windows.zip（解压后 SportDesk/SportDesk.exe）
+# [POS]: 推 main 后打 Windows 包并挂到 tag windows，避开 Artifacts 二次打包
 # [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
 name: Windows
 
@@ -8,6 +8,9 @@ on:
   push:
     branches: [main, master]
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -23,9 +26,13 @@ jobs:
         run: python -m PyInstaller --noconfirm --clean --distpath dist --workpath build packaging/SportDesk.spec
       - name: Zip
         shell: pwsh
-        run: Compress-Archive -Path dist\SportDesk -DestinationPath dist\SportDesk-Windows.zip
-      - name: Upload
-        uses: actions/upload-artifact@v4
+        run: Compress-Archive -Path dist\SportDesk -DestinationPath dist\SportDesk-Windows.zip -CompressionLevel Optimal
+      - name: Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: SportDesk-Windows
-          path: dist/SportDesk-Windows.zip
+          tag_name: windows
+          name: SportDesk Windows
+          body: 解压后打开 SportDesk\SportDesk.exe
+          files: dist/SportDesk-Windows.zip
+          make_latest: true
+          fail_on_unmatched_files: true

@@ -19,5 +19,5 @@ agent/render/look.py - 每片随机皮肤：色盘 / 排版 / 配图动效
 agent/news/fetch.py - 腾讯多榜单 + 自定义类目热搜，默认体育
 </config>
 
-启动: `venv/bin/python -m agent` 出片 · `--web` 打开工作台 · `packaging/build_mac.sh` 打 Mac 包 · 推 GitHub 后 Actions 出 SportDesk-Windows.zip · Windows 本机打 exe 双击 `生成Windows程序.bat`（产物在桌面 SportDesk） · 不要 exe 双击 `打开工作台.bat`
+启动: `venv/bin/python -m agent` 出片 · `--web` 打开工作台 · `packaging/build_mac.sh` 打 Mac 包 · 推 GitHub 后 Release `windows` 出 SportDesk-Windows.zip · Windows 本机打 exe 双击 `生成Windows程序.bat`（产物在桌面 SportDesk） · 不要 exe 双击 `打开工作台.bat`
 [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
